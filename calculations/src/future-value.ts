@@ -1,8 +1,4 @@
-interface IPercent {
-  percent: number;
-}
-
-type Rate = IPercent;
+import { Rate, getRateMultiplier } from './utils';
 
 export function futureValueFromPresentValue(
   presentValue: number,
@@ -13,8 +9,7 @@ export function futureValueFromPresentValue(
     return presentValue;
   }
 
-  const i = rate.percent / 100;
-  return presentValue * ((1 + i) ** terms);
+  return presentValue * (getRateMultiplier(rate) ** terms);
 }
 
 export function futureValueFromRepeatingPayment(repeatingPayment: number, terms: number): number {

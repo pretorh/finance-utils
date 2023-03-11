@@ -24,6 +24,15 @@ describe('future value', () => {
       expect(futureValueFromPresentValue(300, 1, p)).to.be.closeTo(330, delta);
       expect(futureValueFromPresentValue(400, 1, p)).to.be.closeTo(440, delta);
     });
+
+    it('can use rate instead of percent', () => {
+      expect(futureValueFromPresentValue(100, 1, { percent: 2 })).to.be.equal(
+        futureValueFromPresentValue(100, 1, { rate: 0.02 }),
+      );
+      expect(futureValueFromPresentValue(400, 9, { percent: 99 })).to.be.equal(
+        futureValueFromPresentValue(400, 9, { rate: 0.99 }),
+      );
+    });
   });
 
   describe('from repeating payment', () => {

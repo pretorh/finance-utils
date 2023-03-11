@@ -2,9 +2,20 @@ interface IPercent {
   percent: number;
 }
 
-export type Rate = IPercent;
+interface IRate {
+  rate: number;
+}
+
+export type Rate = IRate | IPercent;
+
+function getRate(rate: Rate): number {
+  if ('percent' in rate) {
+    return rate.percent / 100;
+  }
+  return rate.rate;
+}
 
 export function getRateMultiplier(rate: Rate): number {
-  const i = rate.percent / 100;
+  const i = getRate(rate);
   return 1 + i;
 }

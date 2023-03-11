@@ -1,4 +1,4 @@
-import { Rate, getRateMultiplier } from './utils';
+import { Rate, getRate, getRateMultiplier } from './utils';
 
 export function futureValueFromPresentValue(
   presentValue: number,
@@ -12,11 +12,16 @@ export function futureValueFromPresentValue(
   return presentValue * (getRateMultiplier(rate) ** terms);
 }
 
-export function futureValueFromRepeatingPayment(repeatingPayment: number, terms: number): number {
+export function futureValueFromRepeatingPayment(
+  repeatingPayment: number,
+  terms: number,
+  rate: Rate,
+): number {
   if (terms === 0) {
     return 0;
   }
 
-  // todo
-  return repeatingPayment;
+  const multiplier = getRateMultiplier(rate);
+  const nominator = (multiplier ** terms) - 1;
+  return repeatingPayment * (nominator / getRate(rate));
 }

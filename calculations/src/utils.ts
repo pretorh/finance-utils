@@ -8,7 +8,7 @@ interface IRate {
 
 export type Rate = IRate | IPercent;
 
-function getRate(rate: Rate): number {
+export function getRate(rate: Rate): number {
   if ('percent' in rate) {
     return rate.percent / 100;
   }

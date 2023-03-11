@@ -1,7 +1,7 @@
 {
   "name": "financial-calculation-utils",
   "version": "1.0.0",
-  "description": "",
+  "description": "Implementation of some formulae from https://en.wikipedia.org/wiki/Time_value_of_money#Formula_table",
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc",

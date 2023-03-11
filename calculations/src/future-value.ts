@@ -1,10 +1,20 @@
-export function futureValueFromPresentValue(presentValue: number, terms: number): number {
+interface IPercent {
+  percent: number;
+}
+
+type Rate = IPercent;
+
+export function futureValueFromPresentValue(
+  presentValue: number,
+  terms: number,
+  rate: Rate,
+): number {
   if (terms === 0) {
     return presentValue;
   }
 
-  // todo
-  return presentValue;
+  const i = rate.percent / 100;
+  return presentValue * ((1 + i) ** terms);
 }
 
 export function futureValueFromRepeatingPayment(repeatingPayment: number, terms: number): number {

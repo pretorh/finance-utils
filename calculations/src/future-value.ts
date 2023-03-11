@@ -25,3 +25,18 @@ export function futureValueFromRepeatingPayment(
   const nominator = (multiplier ** terms) - 1;
   return repeatingPayment * (nominator / getRate(rate));
 }
+
+interface IFutureValue {
+  presentValue: number;
+  repeatingPayment: number;
+  terms: number;
+  rate: Rate;
+}
+
+export function futureValue(params: IFutureValue): number {
+  const { terms, rate } = params;
+
+  const fromPresent = futureValueFromPresentValue(params.presentValue, terms, rate);
+  const fromRepeat = futureValueFromRepeatingPayment(params.repeatingPayment, terms, rate);
+  return fromPresent + fromRepeat;
+}
